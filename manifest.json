@@ -2,11 +2,11 @@
 
   "manifest_version": 2,
   "name": "KM_OTCorder",
-  "version": "0.1",
+  "version": "0.2",
   
 "applications": {
   "gecko": {
-    "update_url": "https://github.com/motohoro/KM_OTCorder/master/updates.json"
+    "update_url": "https://github.com/motohoro/KM_OTCorder/blob/master/updates.json"
   }
 },
   "description": "KM_OTCorder",
@@ -15,7 +15,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://kansaimedico.co.jp/medico_syanai/cgi/spfne/shop.cgi","*://developer.mozilla.org/*"],
+      "matches": ["https://kansaimedico.co.jp/medico_syanai/cgi/spfne/shop.cgi*","*://developer.mozilla.org/*"],
       "js": ["jquery-3.2.1.min.js","otcorder.js"]
     }
   ]
