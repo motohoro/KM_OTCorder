@@ -1,12 +1,38 @@
 /* Copyright motohoro  */
 jQuery(document).ready(function () {
-	//document.body.style.border = "5px solid red";
 	if($("#preview").length){
 	return;
 	}
-	$("body").prepend('<div id="scanpane"><div><video id="preview" width="300" height="150" style="text-align:center;display:none"></video></div><div><button id="scanbtn">バーコードスキャン開始</button></div><div id="scannamelist"></div></div><button id="barcodevisiblebtn" style="display:none"  onclick="showqrcode();">バーコード表示</button>');
+
 	var script3 = document.createElement('script');
 	script3.type="text/javascript";
+
+	if(($("input[value='sure']").length + $("input[value='order_mail']").length) >0){
+		$("body").prepend('<button id="barcodevisiblebtn" onclick="showqrcode();">バーコード表示</button>');
+	script3.innerHTML = `function aaa() {
+		showqrcode = function(){
+			$("#barcodevisiblebtn").hide();
+			var orders = $("input[name='order']").val();
+			console.log("sure"+orders);
+			var order = orders.split("!");
+			// https://www.markernet.co.jp/blog/blog/2014/08/22/post-2493/
+			$("font:contains('商品名')").parent().parent().nextAll().each(function(index,domEle){//tr
+				console.log($("td",this).attr("bgcolor"));
+				if ($("td",this).attr("bgcolor")=="#ffffff"){
+					var params1 = order[index].split(":");
+					var params2 = params1[0].split(",");
+					var qrstr = '{"name":"'+$("td",this).get(1).innerHTML+ $("td",this).get(3).innerHTML + '","param":["g_no='+params2[0]+'","op1='+params2[1]+'","op2='+params2[2]+'","amount='+params1[1]+'","FF=0"]}';
+					console.log(qrstr);
+					console.log(domEle);
+					var qrimgtag = document.createElement("img");
+					qrimgtag.setAttribute("src","https://api.qrserver.com/v1/create-qr-code/?charset-source=UTF-8&margin=8&size=110x110&data="+qrstr);
+					domEle.appendChild(qrimgtag);
+				}
+			});
+		};//<-showqrcode
+	};`;
+	}else{
+		$("body").prepend('<div id="scanpane"><div><video id="preview" width="300" height="150" style="text-align:center;display:none"></video></div><div><button id="scanbtn">バーコードスキャン開始</button></div><div id="scannamelist"></div></div>');
 	script3.innerHTML = `function aaa() {
 		$(window).on('beforeunload', function() {
 			cameraoff();
@@ -24,16 +50,15 @@ jQuery(document).ready(function () {
 			}
 		});
 		camerainit = function(){
-	      Instascan.Camera.getCameras().then(function (cameras) {
-	        if (cameras.length > 0) {
-	          scanner.start(cameras[0]);
-	        } else {
-	          console.error('No cameras found.');
-	        }
-	      }).catch(function (e) {
-	        console.error(e);
-	      });
-	    
+			Instascan.Camera.getCameras().then(function (cameras) {
+				if (cameras.length > 0) {
+					scanner.start(cameras[0]);
+				} else {
+					console.error('No cameras found.');
+				}
+			}).catch(function (e) {
+				console.error(e);
+			});
 	    }/*camerainit*/
 		cameraoff = function(){
 			scanner.stop();
@@ -58,33 +83,8 @@ jQuery(document).ready(function () {
 			$("#scannamelist").append("<div>"+decodeURIComponent(escape(qrdatajson['name']))+"</div>")
 			$.get("https://kansaimedico.co.jp/medico_syanai/cgi/spfne/shop.cgi?" + qrdataparam);
 		});
-
-		showqrcode = function(){
-			$("#barcodevisiblebtn").hide();
-			var orders = $("input[name='order']").val();
-			console.log("sure"+orders);
-			var order = orders.split("!");
-			// https://www.markernet.co.jp/blog/blog/2014/08/22/post-2493/
-			$("font:contains('商品名')").parent().parent().nextAll().each(function(index,domEle){//tr
-				console.log($("td",this).attr("bgcolor"));
-				if ($("td",this).attr("bgcolor")=="#ffffff"){
-					var params1 = order[index].split(":");
-					var params2 = params1[0].split(",");
-					var qrstr = '{"name":"'+$("td",this).get(1).innerHTML+ $("td",this).get(3).innerHTML + '","param":["g_no='+params2[0]+'","op1='+params2[1]+'","op2='+params2[2]+'","amount='+params1[1]+'","FF=0"]}';
-					console.log(qrstr);
-					console.log(domEle);
-					var qrimgtag = document.createElement("img");
-					qrimgtag.setAttribute("src","https://api.qrserver.com/v1/create-qr-code/?charset-source=UTF-8&margin=8&size=110x110&data="+qrstr);
-					domEle.appendChild(qrimgtag);
-				}
-			});
-		};//<-showqrcode
-
-		if(($("input[value='sure']").length + $("input[value='order_mail']").length) >0){
-			$("#scanpane").hide();
-			$("#barcodevisiblebtn").show();
-		}
 	};`;//<-script3
+	}
 	document.head.appendChild(script3);
 
 	var script = document.createElement('script');
