@@ -42,10 +42,10 @@ jQuery(document).ready(function () {
 		$("#scanbtn").on('click',function(){
 			$("#preview").toggle();
 			if($("#preview").css('display')=="none"){
-				$("#scanbtn").text("SCAN");
+				$("#scanbtn").text("バーコードスキャン開始");
 				cameraoff();
 			}else{
-				$("#scanbtn").text("SCAN OFF");
+				$("#scanbtn").text("スキャン停止");
 				camerainit();
 			}
 		});
