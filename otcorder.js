@@ -1,6 +1,6 @@
 /* Copyright motohoro  */
 jQuery(document).ready(function () {
-	if($("#preview").length){
+	if($("#preview").length + $("#barcodevisiblebtn").length){
 	return;
 	}
 
@@ -13,17 +13,17 @@ jQuery(document).ready(function () {
 		showqrcode = function(){
 			$("#barcodevisiblebtn").hide();
 			var orders = $("input[name='order']").val();
-			console.log("sure"+orders);
+//			console.log("sure"+orders);
 			var order = orders.split("!");
 			// https://www.markernet.co.jp/blog/blog/2014/08/22/post-2493/
 			$("font:contains('商品名')").parent().parent().nextAll().each(function(index,domEle){//tr
-				console.log($("td",this).attr("bgcolor"));
+//				console.log($("td",this).attr("bgcolor"));
 				if ($("td",this).attr("bgcolor")=="#ffffff"){
 					var params1 = order[index].split(":");
 					var params2 = params1[0].split(",");
-					var qrstr = '{"name":"'+$("td",this).get(1).innerHTML+ $("td",this).get(3).innerHTML + '","param":["g_no='+params2[0]+'","op1='+params2[1]+'","op2='+params2[2]+'","amount='+params1[1]+'","FF=0"]}';
-					console.log(qrstr);
-					console.log(domEle);
+					var qrstr = '{"name":"'+encodeURIComponent($("td",this).get(1).innerHTML+ $("td",this).get(3).innerHTML) + '","param":["g_no='+params2[0]+'","op1='+params2[1]+'","op2='+params2[2]+'","amount='+params1[1]+'","FF=0"]}';
+//					console.log(qrstr);
+//					console.log(domEle);
 					var qrimgtag = document.createElement("img");
 					qrimgtag.setAttribute("src","https://api.qrserver.com/v1/create-qr-code/?charset-source=UTF-8&margin=8&size=110x110&data="+qrstr);
 					domEle.appendChild(qrimgtag);
@@ -63,7 +63,7 @@ jQuery(document).ready(function () {
 		cameraoff = function(){
 			scanner.stop();
 		}/*cameraoff*/
-		console.log("Instascan before");
+//		console.log("Instascan before");
 		let scanner;
 		try{
 			scanner = new Instascan.Scanner({ video: document.getElementById('preview'),backgroundScan:true,scanPeriod: 2 });
@@ -71,9 +71,9 @@ jQuery(document).ready(function () {
 			alert("reload");
 			return;
 		}
-		console.log("Instascan after");
+//		console.log("Instascan after");
 		scanner.addListener('scan', function (content) {
-			console.log(content);
+//			console.log(content);
 			qrdatajson = JSON.parse(content);
 			qrdataparam=qrdatajson['param'].join("&");
 			// http://qiita.com/isseium/items/12b215b6eab26acd2afe
