@@ -2,11 +2,11 @@
 
   "manifest_version": 2,
   "name": "KM_OTCorder",
-  "version": "0.4",
+  "version": "0.5",
   
 "applications": {
   "gecko": {
-    "update_url": "https://github.com/motohoro/KM_OTCorder/blob/master/updates.json"
+    "update_url": "https://raw.githubusercontent.com/motohoro/KM_OTCorder/master/updates.json"
   }
 },
   "description": "KM_OTCorder",
