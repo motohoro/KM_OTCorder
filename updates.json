@@ -1,17 +1,8 @@
 {
 	"addons": {
 		"updates": [{
-			"version": "0.3",
-			"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.3/km_otcorder-0.3-an.fx.xpi"
-		}, {
-			"version": "0.4",
-			"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.4/km_otcorder-0.4-an.fx.xpi"
-		}, {
-			"version": "0.5",
-			"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.5/km_otcorder-0.5-an.fx.xpi"
-		}, {
-			"version": "0.6",
-			"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.6/km_otcorder-0.6-an.fx.xpi"
+			"version": "0.6.2",
+			"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.6.2/km_otcorder-0.6.2-an.fx.xpi"
 		}]
 	}
 }
