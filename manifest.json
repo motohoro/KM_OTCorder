@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "KM_OTCorder",
-  "version": "0.6.2",
+  "version": "0.7",
   
   "applications": {
     "gecko": {
@@ -21,8 +21,14 @@
   "content_scripts": [
     {
       "matches": ["https://kansaimedico.co.jp/medico_syanai/cgi/spfne/shop.cgi*","*://developer.mozilla.org/*"],
-      "js": ["jquery-3.2.1.min.js","otcorder-min.js"]
+      "js": ["resources/jquery-3.2.1.min.js","otcorder.js"]
     }
+  ],
+    "web_accessible_resources": [
+    "resources/instascan.min.js",
+    "resources/jquery-3.2.1.min.js",
+    "resources/js.cookie.min.js"
+    
   ]
 
 }
