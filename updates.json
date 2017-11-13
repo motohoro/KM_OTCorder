@@ -10,6 +10,9 @@
 			},{
 				"version": "0.7.1",
 				"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.7.1/km_otcorder-0.7.1-an.fx.xpi"
+			},{
+				"version": "0.7.2",
+				"update_link": "https://github.com/motohoro/KM_OTCorder/releases/download/0.7.2/km_otcorder-0.7.2-an.fx.xpi"
 			}]
 		}
 	}
