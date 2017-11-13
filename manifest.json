@@ -2,10 +2,11 @@
 
   "manifest_version": 2,
   "name": "KM_OTCorder",
-  "version": "0.7",
+  "version": "0.7.1",
   
   "applications": {
     "gecko": {
+      "id": "{f3ef4d06-4387-4c31-b7ea-3d1ca2b807f2}",
       "update_url": "https://rawgit.com/motohoro/KM_OTCorder/master/updates.json"
     }
   },
