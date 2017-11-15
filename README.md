@@ -3,10 +3,10 @@
 とあるWebページにjavascriptを差し込むFirefoxの拡張機能
 
 ## Install
-Firefoxで https://github.com/motohoro/KM_OTCorder/releases/latest へアクセスして拡張機能をインストール
+Firefoxで https://github.com/motohoro/KM_OTCorder/releases/latest へアクセスして拡張機能（km_otcorder～～.xpi）をクリックしてインストール
 
 ## 使い方
-該当ページにボタンが表示されます
+該当ページにボタンが表示されます（[参考画像](https://github.com/motohoro/KM_OTCorder/issues/1) ）
 
 * [バーコードスキャン開始]でPCに接続されたカメラを使ってバーコード読み込みできます
   * サイトでカメラの使用をするときには許可しますか？というダイアログが表示されます。許可して下さい
