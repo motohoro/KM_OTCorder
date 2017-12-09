@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 	var script3 = document.createElement('script');
 	script3.type="text/javascript";
 
-	if(($("input[value='sure']").length + $("input[value='order_mail']").length) >0){
+	if(($("input[value='order_mail']").length) >0){
 		$("body").prepend('<button id="barcodevisiblebtn" onclick="showqrcode();">バーコード表示</button>');
 	script3.innerHTML = `function aaa() {
 		showqrcode = function(){
@@ -25,6 +25,21 @@ jQuery(document).ready(function () {
 					domEle.appendChild(qrimgtag);
 				}
 			});
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(1)").addClass("noprint");
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(2)  table  table").addClass("bordercollapse");//css("border-collapse","collapse");
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(2)  table  table > tbody > tr:has(td[bgcolor='#ffffff'])").addClass("tagborder");
+			
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(2)  table  table > tbody > tr:has(td[bgcolor!='#ffffff'])").addClass("noprint");
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(3)").addClass("noprint");
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:lt(2)").addClass("noprint");
+			$("body > table:eq(1) > tbody > tr > td:lt(1)").addClass("noprint");
+			$("body > table").eq(0).addClass("noprint");
+			//[CSS]<tr>でborder を使えるようにする方法 http://www.webantena.net/css/table-tr-border/
+			$("style").append("@media print{.noprint{display:none}.tagborder{border:2px solid #000 !important;}.bordercollapse{border-collapse:collapse}}")
+
+			//http://www.detelu.com/blog/2011/11/jquery-selector-traversing/
+			// http://www.hp-stylelink.com/news/2013/11/20131122.phps
+//			$("body > table:eq(1) td:lt(2)").css("display","none");
 		};//<-showqrcode
 	};`;
 	}else{
