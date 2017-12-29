@@ -30,12 +30,13 @@ jQuery(document).ready(function () {
 			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(2)  table  table > tbody > tr:has(td[bgcolor='#ffffff'])").addClass("tagborder");
 			
 			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(2)  table  table > tbody > tr:has(td[bgcolor!='#ffffff'])").addClass("noprint");
+			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(2)  table  table > tbody > tr> td:nth-child(odd)").addClass("noprint");
 			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:eq(3)").addClass("noprint");
 			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(0) > tbody > tr > td > div >center:lt(2)").addClass("noprint");
 			$("body > table:eq(1) > tbody > tr > td:lt(1)").addClass("noprint");
 			$("body > table").eq(0).addClass("noprint");
 			//[CSS]<tr>でborder を使えるようにする方法 http://www.webantena.net/css/table-tr-border/
-			$("style").append("@media print{.noprint{display:none}.tagborder{border:2px solid #000 !important;}.bordercollapse{border-collapse:collapse}}")
+			$("style").append("@media print{.noprint{display:none}.tagborder{border:2px solid #000 !important;}.bordercollapse{border-collapse:collapse}table{width:auto !important;}}")
 
 			//http://www.detelu.com/blog/2011/11/jquery-selector-traversing/
 			// http://www.hp-stylelink.com/news/2013/11/20131122.phps
