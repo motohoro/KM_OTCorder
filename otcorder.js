@@ -19,10 +19,14 @@ jQuery(document).ready(function () {
 				if ($("td",this).attr("bgcolor")=="#ffffff"){
 					var params1 = order[index].split(":");
 					var params2 = params1[0].split(",");
-					var qrstr = '{"name":"'+encodeURIComponent($("td",this).get(1).innerHTML+ $("td",this).get(3).innerHTML) + '","param":["g_no='+params2[0]+'","op1='+params2[1]+'","op2='+params2[2]+'","amount='+params1[1]+'","FF=0"]}';
-					var qrimgtag = document.createElement("img");
-					qrimgtag.setAttribute("src","https://api.qrserver.com/v1/create-qr-code/?charset-source=UTF-8&margin=8&size=110x110&data="+qrstr);
-					domEle.appendChild(qrimgtag);
+					var qrstr = '{"name":"'+$("td",this).get(1).innerHTML+ $("td",this).get(3).innerHTML + '","param":["g_no='+params2[0]+'","op1='+params2[1]+'","op2='+params2[2]+'","amount='+params1[1]+'","FF=0"]}';
+					$(domEle).qrcode({
+						size:110,
+						quiet:2,
+						background:'#FFF',
+						mode:0,
+						text:qrstr,
+					});
 				}
 			});
 			$("body > table:eq(1) > tbody > tr > td:eq(2) > div > table:eq(1)").addClass("noprint");
@@ -116,6 +120,7 @@ Cookies.set("order",$("input[name=order]",data).first().val());
 
 	var jqurl = chrome.extension.getURL("resources/jquery-3.2.1.min.js");
 	var jqcookurl = chrome.extension.getURL("resources/js.cookie.min.js");
+	var jqqrurl = chrome.extension.getURL("resources/jquery-qrcode-0.14.0.min.js");
 
 	var script = document.createElement('script');
 	script.type="text/javascript";
@@ -141,6 +146,10 @@ Cookies.set("order",$("input[name=order]",data).first().val());
 		script4.type="text/javascript";
 		script4.src= "${jqcookurl}";
 		document.head.appendChild(script4);
+		var script5 = document.createElement('script');
+		script5.type="text/javascript";
+		script5.src= "${jqqrurl}";
+		document.head.appendChild(script5);
 	`;
 	//jQueryのajax()を利用すると返り値をとりたいときのやり方 - Qiita https://qiita.com/katsukii/items/bd64efcf4f070d77c028
 	var instascanurl = chrome.extension.getURL("resources/instascan.min.js");

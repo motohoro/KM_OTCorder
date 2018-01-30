@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "KM_OTCorder",
-  "version": "0.8",
+  "version": "0.9.0",
   
   "applications": {
     "gecko": {
@@ -17,7 +17,7 @@
   },
   "homepage_url": "https://github.com/motohoro/KM_OTCorder",
   "icons": {
-    "48": "icons/QR_Code1509377959.png"
+    "148": "icons/QR_Code1509377959.png"
   },
   "content_scripts": [
     {
@@ -28,7 +28,8 @@
     "web_accessible_resources": [
     "resources/instascan.min.js",
     "resources/jquery-3.2.1.min.js",
-    "resources/js.cookie.min.js"
+    "resources/js.cookie.min.js",
+    "resources/jquery-qrcode-0.14.0.min.js"
     
   ]
 
