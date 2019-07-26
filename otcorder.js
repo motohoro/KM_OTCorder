@@ -118,36 +118,20 @@ Cookies.set("order",$("input[name=order]",data).first().val());
 	}
 	document.head.appendChild(script3);
 
-	var jqurl = chrome.extension.getURL("resources/jquery-3.2.1.min.js");
+	var jqurl = chrome.extension.getURL("resources/jquery-3.4.1.min.js");
 	var jqcookurl = chrome.extension.getURL("resources/js.cookie.min.js");
-	var jqqrurl = chrome.extension.getURL("resources/jquery-qrcode-0.14.0.min.js");
+	var jqqrurl = chrome.extension.getURL("resources/jquery-qrcode-0.17.0.min.js");
 
 	var script = document.createElement('script');
 	script.type="text/javascript";
-/*	script.setAttribute('onload',`var script2 = document.createElement('script');
-		script2.id="jqueryscript";
-		script2.type="text/javascript";
-		script2.setAttribute('onload',"aaa();");
-		script2.src = "${jqurl}";
-		document.head.appendChild(script2);
-		var script4 = document.createElement('script');
+	var scriptcontent1 = `var script4 = document.createElement('script');
 		script4.type="text/javascript";
-		script4.src= "${jqcookurl}";
-		document.head.appendChild(script4);
-	`);
-*/
-	var scriptcontent1 = `var script2 = document.createElement('script');
-		script2.id="jqueryscript";
-		script2.type="text/javascript";
-		script2.setAttribute('onload',"aaa();");
-		script2.src = "${jqurl}";
-		document.head.appendChild(script2);
-		var script4 = document.createElement('script');
-		script4.type="text/javascript";
+		script4.setAttribute('defer', 'defer');
 		script4.src= "${jqcookurl}";
 		document.head.appendChild(script4);
 		var script5 = document.createElement('script');
 		script5.type="text/javascript";
+		script5.setAttribute('defer', 'defer');
 		script5.src= "${jqqrurl}";
 		document.head.appendChild(script5);
 	`;
@@ -161,8 +145,10 @@ Cookies.set("order",$("input[name=order]",data).first().val());
 	}
 	
 	instaload().done(function(result){
-	script.innerHTML=result+";"+scriptcontent1;
-//	script.src = 'https://cdn.rawgit.com/schmich/instascan-builds/36ad50f0/instascan.min.js';
+		$.ajax({url:jqurl,dataType:'text'}).done(function(result2){
+			script.innerHTML=result+";"+result2+";"+scriptcontent1+"aaa();";
+			document.head.appendChild(script);
+		});
 	document.head.appendChild(script);
 	}).fail(function(result){
 	});
